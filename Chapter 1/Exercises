@@ -1,0 +1,102 @@
+// -----------------------------------------------------------------------------
+// https://lptcp.blogspot.com/
+// 
+/*
+	Procedural Content Generation for C++ Game Development
+	By Dale Greeen
+
+	Chapter 1.14
+	Exercises
+
+	Exercise 3 & 4 are subjective/not coding exercises
+
+*/
+// https://github.com/l-paz91/
+// -----------------------------------------------------------------------------
+
+//--INCLUDES--//
+#include "std_lib_facilities.h"
+
+// -----------------------------------------------------------------------------
+
+inline int randint(int min, int max)
+{
+	static default_random_engine ran((unsigned int)time(0));
+	return uniform_int_distribution<>{min, max}(ran);
+}
+
+// -----------------------------------------------------------------------------
+
+void Exercise1()
+{
+	// Exercise 1 
+	// Using the std::rand() function with the modulo operator (%), for updating random_numbers.pp
+	// to generate numbers that fall within the following ranges: 
+	// 0 - 1000, 150 - 600, 198 - 246
+
+	srand(time(nullptr));
+
+	cout << "---- Exercise 1 ----\n";
+	for (int i = 0; i < 5; ++i)
+	{
+		cout << "Press enter to generate a random number between 0 - 1000: ";
+		cin.get();
+
+		// generate a random integer
+		int randomInteger = rand() % 1000;
+
+		cout << randomInteger << "\n\n";
+	}
+
+	for (int i = 0; i < 5; ++i)
+	{
+		cout << "Press enter to generate a random number between 150 - 600: ";
+		cin.get();
+
+		// generate a random integer
+		int randomInteger = (rand() % 451) + 150;
+
+		cout << randomInteger << "\n\n";
+	}
+
+	for (int i = 0; i < 5; ++i)
+	{
+		cout << "Press enter to generate a random number between 198 - 246: ";
+		cin.get();
+
+		// generate a random integer
+		int randomInteger = (rand() % 49) + 198;
+
+		cout << randomInteger << "\n\n";
+	}
+}
+
+// -----------------------------------------------------------------------------
+
+void Exercise2()
+{
+	// Come up with a new way of generating a random seed during the runtime
+	// there are lots of ways to do this. Be creative! In my solution, the first
+	// numbers were always similar. Find out whether you can generate a random 
+	// seed that mitigates that
+	int seed1 = randint(rand() + rand());
+	int seed2 = randint(rand() + rand());
+	srand(seed1 + seed2);
+}
+
+// -----------------------------------------------------------------------------
+
+int main()
+{	
+	Exercise2();
+	Exercise1();
+
+	cout << "\n\n";
+	pressKeyToContinue();
+	_CrtDumpMemoryLeaks();
+	return 0;
+}
+
+// -----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
